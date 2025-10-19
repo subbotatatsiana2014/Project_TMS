@@ -1,0 +1,8 @@
+echo "vendor/
+node_modules/
+.env
+.idea/
+docker/storage/
+docker/bootstrap/cache/
+docker/public/storage/
+*.log" > .gitignore
