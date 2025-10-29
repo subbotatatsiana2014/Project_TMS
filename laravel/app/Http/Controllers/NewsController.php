@@ -14,7 +14,9 @@ class NewsController extends Controller
     public function index()
     {
         $news = News::paginate(self::NEWS_COUNT);
-        return response()->json($news);
+
+        return view('pages.news.index', compact('news'));
+        //return response()->json($news);
     }
 
     /**
@@ -45,7 +47,8 @@ class NewsController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $new_item = News::where('id', $id)->firstOrFail();
+        return view('pages.news.show', compact('new_item'));
     }
 
     /**
