@@ -1,12 +1,12 @@
-<a href="{{route('news.create')}}">Создать</a><br><br>
-<ul>
-    @foreach($news as $item)
-        <li>
-            title = {{$item->title}}
-            <br>
-            desc = {{$item->description}}
-            <br>
-            <a href="{{route('news.show', $item->id)}}">Детальная страница новости</a>
-        </li>
-    @endforeach
-</ul>
+@extends('layouts.app')
+@section('title', 'Страница новостей')
+@section('content')
+    <div class="button_container">
+        <a class="button" href="{{route('news.create')}}">Создать</a><br><br>
+    </div>
+    <ul>
+        @foreach($news as $item)
+            @include('partials.forms.news.cardNews')
+        @endforeach
+    </ul>
+@endsection

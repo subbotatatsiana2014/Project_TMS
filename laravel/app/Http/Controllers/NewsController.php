@@ -24,7 +24,10 @@ class NewsController extends Controller
      */
     public function create()
     {
-        return view('pages.news.create');
+        $news_count = News::count();
+        $next_news_number = $news_count + 1;
+
+        return view('pages.news.create', compact('next_news_number'));
     }
 
     /**

@@ -1,6 +1,5 @@
-<form method="post" action="{{ route('news.store') }}">
-    @csrf
-    <input name="title" type="text">
-    <input name="description" type="text">
-    <button type="submit">Save</button>
-</form>
+@extends('layouts.app')
+@section('title', 'Добавить новость ' . $next_news_number)
+@section('content')
+    @include('partials.forms.news.createNews')
+@endsection
