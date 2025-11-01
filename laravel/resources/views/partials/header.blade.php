@@ -315,9 +315,9 @@
     </div>
     <div class="menu">
         <ul class="menu_items">
-            <li class="menu_item"><a class="menu_link" href="/">Home</a></li>
-            <li class="menu_item"><a class="menu_link" href="/news">News</a></li>
-            <li class="menu_item"><a class="menu_link" href="/about">About</a></li>
+            @foreach($menuList as $item)
+                <li class="menu_item"><a class="menu_link" href="{{$item['link']}}">{{$item['name']}}</a></li>
+            @endforeach
         </ul>
     </div>
     <div class="profile"></div>
