@@ -1,0 +1,8 @@
+<form method="post" action="{{ route('news.store') }}">
+    @csrf
+    <input name="title" type="text">
+    <input name="description" type="text">
+    <div class="button_container">
+        <button  class="button" type="submit">Save</button>
+    </div>
+</form>
