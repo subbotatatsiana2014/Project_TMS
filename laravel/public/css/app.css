@@ -1,0 +1,107 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.header{
+    width: 100%;
+    height: 100px;
+    background-color: bisque;
+    position: relative;
+    display: flex;
+    margin-bottom: 30px;
+}
+
+.logo {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.menu {
+    margin: auto;
+    display: flex;
+    gap: 10px;
+}
+
+.menu_items {
+    display: flex;
+    gap: 40px;
+}
+
+.menu_item {
+    list-style-type: none;
+    text-decoration: none;
+}
+
+.menu_link{
+    text-decoration: none;
+    color: #1a202c;
+    font-size: 24px;
+}
+
+.content {
+    flex: 1 0 auto;
+    padding: 20px;
+    position: relative;
+}
+
+.content a {
+    text-decoration: none;
+    color: saddlebrown;
+}
+
+.content ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    list-style-type: none;
+}
+
+.content li {
+    padding: 10px;
+    border: 1px solid #000;
+    border-radius: 10px;
+    text-align: center;
+    width: 200px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.button_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30px;
+}
+
+.button {
+    padding: 5px 30px;
+    border: 2px solid saddlebrown;
+    border-radius: 15px;
+    background-color: bisque;
+}
+
+.footer {
+    flex-shrink: 0;
+    background-color: bisque;
+    color: white;
+    padding: 50px;
+}
