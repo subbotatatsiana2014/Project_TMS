@@ -53,3 +53,4 @@ php artisan route:cache
 
 echo "Laravel is ready in Docker!"
 php-fpm
+#php artisan queue:work
