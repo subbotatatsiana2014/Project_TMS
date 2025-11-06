@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\NewsHitEvent;
 use App\Models\News;
 use Illuminate\Http\Request;
 
@@ -11,10 +12,10 @@ class NewsController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(\Illuminate\Http\Request $request)
     {
         $news = News::paginate(self::NEWS_COUNT);
-
+        event(new NewsHitEvent($request));
         return view('pages.news.index', compact('news'));
         //return response()->json($news);
     }
