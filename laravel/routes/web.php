@@ -16,3 +16,5 @@ Route::prefix('/admin')->group(function () {
 });
 
 Route::get('/queue', [QueueController::class, 'index']);
+
+Route::get('/send-email', [\App\Http\Controllers\EmailSenderController::class, 'index'])->name('send_email');
