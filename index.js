@@ -192,6 +192,9 @@ searchInput.id = 'searchInput';
 searchInput.placeholder = 'Search...';
 searchInput.autocomplete = 'off';
 
+allToDo.append(allToDoCount);
+completedToDo.append(completedToDoCount);
+
 infoSection.append(allToDo);
 infoSection.append(allToDoCount);
 infoSection.append(completedToDo);
@@ -221,6 +224,8 @@ buttonShowAll.addEventListener('click', () => {
     items.forEach(item => {
         item.style.display = 'flex';
     });
+
+    searchInput.value = ''; 
 });
 
 buttonCompleted.addEventListener('click', () => {
@@ -232,11 +237,20 @@ buttonCompleted.addEventListener('click', () => {
             item.style.display = 'none';
         }
     });
+
+    searchInput.value = '';    
 });
 
 searchInput.addEventListener('input', () => {
     const searchText = searchInput.value.toLowerCase();
     const items = document.querySelectorAll('.todo-item');
+
+    if (searchText.length < 3) {
+        items.forEach(item => {
+            item.style.display = 'flex';
+        });
+        return;
+    }
 
     items.forEach(item => {
         const text = item.textContent.toLowerCase();
