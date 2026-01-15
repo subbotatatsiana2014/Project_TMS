@@ -39,6 +39,122 @@ const addButton = document.createElement('button');
 addButton.id = 'addButton';
 addButton.textContent = 'Add';
 
+buttonDeleteAll.addEventListener('click', () => {
+    const items = document.querySelectorAll('.todo-item');
+
+    if (items.length === 0) {
+        alert('Нет задач для удаления!');
+        return;
+    }
+
+    if (confirm(`Вы действительно хотите удалить все задачи? (${items.length})`)) {
+        items.forEach(item => item.remove());
+        updateCounters();
+    }
+});
+
+buttonDeleteLast.addEventListener('click', () => {
+    const lastItems = document.querySelectorAll('.todo-item:first-of-type');
+
+    if (lastItems.length > 0) {
+        const lastItem = lastItems[lastItems.length - 1];
+        
+        const taskTextElement = lastItem.querySelector('.todo-text');
+        const taskText = taskTextElement ? taskTextElement.textContent : 'Нет задач!';
+        
+        if (confirm(`Вы действительно хотите удалить задачу? (${taskText})`)) {
+            lastItem.remove();
+            updateCounters();
+        }
+    } else {
+        alert('Нет задач для удаления!');
+        return;       
+    }
+});
+
+let toDoText = '';
+todoInput.addEventListener('input', () => {
+    toDoText = event.target.value;
+});
+
+todoInput.addEventListener('keypress', (event) => {
+    if(event.key === 'Enter') {
+        addButton.click();
+    }
+});
+
+addButton.addEventListener('click', () => {
+    const todoItem = document.createElement('li');
+    todoItem.className = 'todo-item';
+
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.className = 'checkbox';
+    checkbox.checked = false;
+
+    checkbox.addEventListener('change', () => {
+        if (checkbox.checked) {
+            todoItem.classList.add('completed');
+        } else {
+            todoItem.classList.remove('completed');
+        }
+        updateCounters();
+    });
+
+    const todoContent = document.createElement('div');
+    todoContent.className = 'todo-content';
+
+    if (!toDoText) {
+        alert('Пожалуйста, введите текст задачи!');
+        return;
+    }
+
+    const todoTextContainer = document.createElement('div');
+    todoTextContainer.className = 'todo-text';
+    todoTextContainer.textContent = toDoText;
+
+    const todoDate = document.createElement('div');
+    todoDate.className = 'todo-date';
+    const currentDate = new Date().toLocaleDateString('ru-RU', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+    });
+    todoDate.textContent = currentDate;
+
+    const deleteBtn = document.createElement('button');
+    deleteBtn.className = 'delete-btn';
+
+    deleteBtn.addEventListener('click', function() {
+        todoItem.remove();
+        updateCounters();
+    });
+
+    const deleteIcon = document.createElement('img');
+    deleteIcon.src = 'img/baskets.png';
+    deleteIcon.alt = 'Удалить';
+    deleteIcon.style.height = '35px';
+
+    deleteBtn.append(deleteIcon);
+
+    todoContent.append(todoTextContainer);
+    todoContent.append(todoDate);
+
+    todoInput.value = '';
+    toDoText = '';
+    todoInput.focus();
+
+    todoItem.append(checkbox);
+    todoItem.append(todoContent);
+    todoItem.append(deleteBtn);
+
+    todoList.prepend(todoItem);
+
+    updateCounters();
+});
+
 inputSection.append(buttonDeleteAll);
 inputSection.append(buttonDeleteLast);
 inputSection.append(todoInput);
@@ -74,6 +190,7 @@ const searchInput = document.createElement('input');
 searchInput.type = 'text';
 searchInput.id = 'searchInput';
 searchInput.placeholder = 'Search...';
+searchInput.autocomplete = 'off';
 
 infoSection.append(allToDo);
 infoSection.append(allToDoCount);
@@ -91,97 +208,45 @@ const todoList = document.createElement('ul');
 todoList.className = 'todo-list';
 todoList.id = 'todoList';
 
-// ==================== ПЕРВАЯ ЗАДАЧА ====================
-const todoItem1 = document.createElement('li');
-todoItem1.className = 'todo-item';
+function updateCounters() {
+    const allItems = document.querySelectorAll('.todo-item');
+    const completedItems = document.querySelectorAll('.todo-item.completed');
+    
+    allToDoCount.textContent = allItems.length;
+    completedToDoCount.textContent = completedItems.length;
+}
 
-const checkbox1 = document.createElement('input');
-checkbox1.type = 'checkbox';
-checkbox1.className = 'checkbox';
-checkbox1.checked = false;
-
-const todoContent1 = document.createElement('div');
-todoContent1.className = 'todo-content';
-
-const todoText1 = document.createElement('div');
-todoText1.className = 'todo-text';
-todoText1.textContent = 'Купить продукты';
-
-const todoDate1 = document.createElement('div');
-todoDate1.className = 'todo-date';
-const currentDate1 = new Date().toLocaleDateString('ru-RU', {
-    day: '2-digit',
-    month: '2-digit',
-    year: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit'
+buttonShowAll.addEventListener('click', () => {
+    const items = document.querySelectorAll('.todo-item');
+    items.forEach(item => {
+        item.style.display = 'flex';
+    });
 });
-todoDate1.textContent = currentDate1;
 
-const deleteBtn1 = document.createElement('button');
-deleteBtn1.className = 'delete-btn';
-
-const deleteIcon1 = document.createElement('img');
-deleteIcon1.src = 'img/baskets.png';
-deleteIcon1.alt = 'Удалить';
-deleteIcon1.style.height = '35px';
-
-deleteBtn1.append(deleteIcon1);
-
-todoContent1.append(todoText1);
-todoContent1.append(todoDate1);
-
-todoItem1.append(checkbox1);
-todoItem1.append(todoContent1);
-todoItem1.append(deleteBtn1);
-
-// ==================== ВТОРАЯ ЗАДАЧА ====================
-const todoItem2 = document.createElement('li');
-todoItem2.className = 'todo-item';
-
-const checkbox2 = document.createElement('input');
-checkbox2.type = 'checkbox';
-checkbox2.className = 'checkbox';
-checkbox2.checked = true;
-
-const todoContent2 = document.createElement('div');
-todoContent2.className = 'todo-content';
-
-const todoText2 = document.createElement('div');
-todoText2.className = 'todo-text';
-todoText2.textContent = 'Постирать одежду';
-todoItem2.classList.add('completed');
-
-const todoDate2 = document.createElement('div');
-todoDate2.className = 'todo-date';
-const currentDate2 = new Date().toLocaleDateString('ru-RU', {
-    day: '2-digit',
-    month: '2-digit',
-    year: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit'
+buttonCompleted.addEventListener('click', () => {
+    const items = document.querySelectorAll('.todo-item');
+    items.forEach(item => {
+        if (item.classList.contains('completed')) {
+            item.style.display = 'flex';
+        } else {
+            item.style.display = 'none';
+        }
+    });
 });
-todoDate2.textContent = currentDate2;
 
-const deleteBtn2 = document.createElement('button');
-deleteBtn2.className = 'delete-btn';
+searchInput.addEventListener('input', () => {
+    const searchText = searchInput.value.toLowerCase();
+    const items = document.querySelectorAll('.todo-item');
 
-const deleteIcon2 = document.createElement('img');
-deleteIcon2.src = 'img/baskets.png';
-deleteIcon2.alt = 'Удалить';
-deleteIcon2.style.height = '35px';
-
-deleteBtn2.append(deleteIcon2);
-
-todoContent2.append(todoText2);
-todoContent2.append(todoDate2);
-
-todoItem2.append(checkbox2);
-todoItem2.append(todoContent2);
-todoItem2.append(deleteBtn2);
-
-todoList.append(todoItem1);
-todoList.append(todoItem2);
+    items.forEach(item => {
+        const text = item.textContent.toLowerCase();
+        if(searchText === '' || text.includes(searchText)){
+            item.style.display = 'flex';
+        } else {
+            item.style.display = 'none';
+        }
+    });
+});
 
 todoListContainer.append(todoList);
 
