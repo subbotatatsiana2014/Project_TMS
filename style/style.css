@@ -1,0 +1,189 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #f5e9dc 0%, #e8dfd3 100%);
+    color: #2f4f4f;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: linear-gradient(145deg, #a9c6e8 0%, #8bb4e3 100%);
+    box-shadow: 0 15px 35px rgba(106, 141, 173, 0.3);
+    border: 2px solid rgba(213, 215, 241, 0.7);
+    border-radius: 24px;
+    padding: 50px 40px;
+    width: 100%;
+    max-width: 520px;
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    color: #faf0e6;
+    font-weight: 600;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 40px;
+    letter-spacing: 0.5px;
+}
+
+.display {
+    border: 3px solid rgba(250, 240, 230, 0.8);
+    border-radius: 18px;
+    font-size: 70px;
+    font-weight: 700;
+    color: #fff8f0;
+    background: linear-gradient(145deg, #7a7cf0 0%, #6769d9 100%);
+    padding: 25px 40px;
+    letter-spacing: 8px;
+    margin-bottom: 50px;
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 4px 6px rgba(255, 255, 255, 0.3);
+    min-width: 280px;
+}
+
+.timer-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+.timer-buttons button {
+    padding: 16px 35px;
+    font-size: 17px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    min-width: 160px;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    position: relative;
+    overflow: hidden;
+}
+
+.timer-buttons button:nth-child(1) {
+    background: linear-gradient(145deg, #6a8db9 0%, #5c7ca3 100%);
+    color: #f0f8ff;
+}
+
+.timer-buttons button:nth-child(2) {
+    background: linear-gradient(145deg, #ff7eb3 0%, #ff6fa3 100%);
+    color: #fff;
+}
+
+.timer-buttons button:nth-child(3) {
+    background: linear-gradient(145deg, #ffb347 0%, #ffa033 100%);
+    color: #fff;
+}
+
+.timer-buttons button:hover:not(:disabled) {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.timer-buttons button:active:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.timer-buttons button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+    background: linear-gradient(145deg, #b0b0b0 0%, #999999 100%) !important;
+    color: #e0e0e0 !important;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 35px 25px;
+        max-width: 95%;
+    }
+    
+    h1 {
+        font-size: 35px;
+        margin-bottom: 25px;
+    }
+    
+    .display {
+        padding: 20px 30px;
+        letter-spacing: 6px;
+        min-width: 240px;
+        margin-bottom: 40px;
+    }
+    
+    .timer-buttons {
+        gap: 15px;
+    }
+    
+    .timer-buttons button {
+        min-width: 140px;
+        padding: 14px 25px;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 25px 20px;
+    }
+    
+    h1 {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .display {
+        padding: 15px 20px;
+        letter-spacing: 4px;
+        min-width: 200px;
+    }
+    
+    .timer-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .timer-buttons button {
+        width: 100%;
+        min-width: auto;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.container {
+    animation: fadeIn 0.6s ease-out;
+}
