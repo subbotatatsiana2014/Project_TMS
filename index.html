@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Network Requests</title>
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> 
+</head>
+<body>
+    <div class="container">
+        <h1>Работа с сетевыми запросами</h1>
+        
+        <div class="controls">
+            <button id="getTodosBtn" class="btn btn-getTodo">
+                <i class="fas fa-download"></i> GET Todos
+            </button>
+            <button id="clearBtn" class="btn btn-clear">
+                <i class="fas fa-trash"></i> Clear List
+            </button>
+            <button id="createTodoBtn" class="btn btn-newTodo">
+                <i class="fas fa-plus"></i> Load More
+            </button>
+        </div>
+
+        <div class="api-controls">
+            <div class="api-buttons">
+                <button id="postBtn" class="btn-api post" title="Создать новую задачу">
+                    <i class="fas fa-paper-plane"></i> POST
+                </button>
+                <button id="putBtn" class="btn-api put" title="Обновить задачу #1">
+                    <i class="fas fa-edit"></i> PUT
+                </button>
+                <button id="patchBtn" class="btn-api patch" title="Частично обновить задачу #1">
+                    <i class="fas fa-wrench"></i> PATCH
+                </button>
+                <button id="deleteBtn" class="btn-api delete" title="Удалить задачу #1">
+                    <i class="fas fa-trash"></i> DELETE
+                </button>
+            </div>
+        </div>
+
+        <div id="api-result" class="api-result">
+            <h3><i class="fas fa-code"></i> Результат запроса:</h3>
+            <pre id="result-content"></pre>
+        </div>
+                
+        <div id="todos-container">
+            <h2><i class="fas fa-list-check"></i> 
+                Todo List (<span id="currentItems">0 of 0</span>)
+            </h2>
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p>Loading todos...</p>
+            </div>
+            <ul id="todosList" class="todos-list"></ul>
+        </div>
+    </div>
+    
+    <script src="index.js"></script>
+</body>
+</html>
