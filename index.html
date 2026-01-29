@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Network Requests - Async/Await & Promise Chaining</title>
+    <link rel="stylesheet" href="style/style.css"></head>
+<body>
+    <div class="container">
+        <h1>Сетевые запросы: Async/Await vs Promise Chaining</h1>
+        
+        <div class="controls">
+            <button id="loadPostsBtn" class="btn btn-primary">
+                Загрузить посты
+            </button>
+            <button id="methodToggleBtn" class="btn btn-secondary">
+                Сменить метод
+            </button>
+            <button id="clearBtn" class="btn btn-danger">
+                Очистить
+            </button>
+        </div>
+
+        <div id="postsContainer">
+            <h2> 
+                Список постов (<span id="postsCounter">0 из 4</span>)
+            </h2>
+            
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p>Загрузка постов...</p>
+                <p class="method-indicator" id="methodIndicator"></p>
+            </div>
+            
+            <ul id="postsList" class="posts-list"></ul>
+        </div>
+    </div>
+    
+    <script src="index.js"></script>
+</body>
+</html>
